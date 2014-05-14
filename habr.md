@@ -190,7 +190,7 @@ Node.js, и мне хотелось его попробовать на ново�
 - [редактор](http://habrahabr.ru/post/174987 "ACE: самый функциональный редактор кода")
 - [просмотрщик](http://fancyapps.com/fancybox)
 - [консоль](https://github.com/replit/jq-console)
-- [меню](http://medialize.github.io/jQuery-contextMenu)
+- [меню](http://coderaiser.github.io/menu)
 - [архиватор](http://habrahabr.ru/post/216641 "Быстрый gzip на javascript для браузера и node.js")
 
 ## Внутреннее устройство
