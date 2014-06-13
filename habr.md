@@ -6,6 +6,8 @@
 
 ![Cloud Commander](http://cloudcmd.io/img/screen/view.png "Cloud Commander")
 
+Сайт: http://cloudcmd.io
+
 Демо: [heroku](http://cloudcmd.heroku.com), [jitsu](http://cloudcmd.jit.su)
 
 ## Предисловие
