@@ -112,7 +112,36 @@ Console('.console', function() {
 
 Редактор, основанный на [ace](http://ace.c9.io "Ace") так же выделился в отдельный модуль,
 который может использовать не только Cloud Commander, но и любое другое приложение, так как это тоже `express middleware`.
-Из коробки есть горячие клавиши.
+Из коробки есть горячие клавиши а так же `minify` и `beautify`. Для начала использования достаточно кода на сервере:
+
+```js
+app.use(edward({
+    minify  : true,  /* default */
+    online  : false, /* default */
+    diff    : true,  /* default */
+    zip     : true   /* default */
+}));
+```
+
+И клиенте :
+
+```html
+<div class="edit" data-name="js-edit"></div>
+<script src="/edward/edward.js"></script>
+```
+
+```css
+html, body, .edit {
+    height: 100%;
+    margin: 0;
+}
+```
+
+```js
+edward('[data-name="js-edit"]', function(el) {
+    console.log('edward is ready');
+});
+```
 
 ## Разработка
 ## Послесловие
