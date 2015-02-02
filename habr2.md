@@ -77,5 +77,36 @@ app.use(join({
 <link rel="/join:/css/normilize.css:/css/style.css">
 ```
 
+### Console
+
+[Console](https://github.com/cloudcmd/console-io "Console") - еще один `middleware` совместимый с `express`.
+Подключается в пару строчек: на сервере и клиенте.
+
+Вот часть на сервере:
+
+```js
+onsole({
+    server: server,     /* only one should be passed: */
+    socket: socket,     /* server or socket  */
+    online: true,       /* default */
+    minify: true,       /* default */
+    prefix:'/console'   /* default */
+})
+```
+
+И на клиенте:
+
+```html
+<div class="console"></div>
+<script src="/console/console.js"></script>
+<script>
+Console('.console', function() {
+    console.log('console ready')
+});
+</script>
+```
+
+В результате мы получаем консоль, которая может принимать команды на клиенте и выполнять их на сервере.
+
 ## Разработка
 ## Послесловие
