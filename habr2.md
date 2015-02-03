@@ -148,6 +148,7 @@ edward('[data-name="js-edit"]', function(el) {
 Последним middleware на сегодня будет [mollify](https://github.com/coderaiser/mollify "mollify"). Он позволяет на лету
 минифицировать `js`, `css` и `html`. Для этого он использует *Minify* описанный выше.
 
+
 ### Rendy
 
 Когда нужен действительно простой шаблонизатор [rendy](https://github.com/coderaiser/rendy "Rendy") может пригодится.
