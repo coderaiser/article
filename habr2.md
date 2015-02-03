@@ -145,7 +145,7 @@ edward('[data-name="js-edit"]', function(el) {
 
 ### Mollify
 
-Последним middleware на сегодня будет [mollify](https://github.com/coderaiser/mollify). Он позволяет на лету
+Последним middleware на сегодня будет [mollify](https://github.com/coderaiser/mollify "mollify"). Он позволяет на лету
 минифицировать `js`, `css` и `html`. Для этого он использует *Minify* описанный выше.
 
 ### Rendy
