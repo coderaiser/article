@@ -79,6 +79,8 @@ app.use(join({
 
 ### Console
 
+![Console](https://raw.githubusercontent.com/cloudcmd/console/master/img/console.png "Console")
+
 [Console](https://github.com/cloudcmd/console-io "Console") - еще один `middleware` совместимый с `express`.
 Подключается в пару строчек: на сервере и клиенте.
 
@@ -116,7 +118,9 @@ Console('.console', function() {
 
 ### Edward
 
-Редактор, основанный на [ace](http://ace.c9.io "Ace") так же выделился в отдельный модуль,
+![Edward](https://raw.githubusercontent.com/cloudcmd/edward/master/img/edward.png "Edward")
+
+Редактор [Edward](https://github.com/cloudcmd/edward "Edward"), основанный на [ace](http://ace.c9.io "Ace") так же выделился в отдельный модуль,
 который может использовать не только Cloud Commander, но и любое другое приложение, так как это тоже `express middleware`.
 Из коробки есть горячие клавиши, а так же `minify` и `beautify`. Для начала использования достаточно кода на сервере:
 
