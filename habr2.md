@@ -164,14 +164,18 @@ edward('[data-name="js-edit"]', function(el) {
 И Ace и Codemirror достаточно зрелые проекты. Правда у них обоих есть недостатки:
 
 - с помощью Ace не получится нормально редактировать код на мобильном, поскольку нет возможности скоролить код.
-- CodeMirror не использует **WebWorkers**, поэтому, при использовании JSHINT редактор начинает работать медленее, чем Ace.
+- CodeMirror не использует WebWorkers, поэтому, при использовании JSHINT редактор начинает работать медленее, чем Ace.
 
 Во время адаптации CodeMirror к возможности стать полноценной заменой Ace было написано несколько плагинов:
 
-- [CodeMirror Searchbox](https://github.com/coderaiser/cm-searchbox) - аналогичен используемому в Ace инструмент для
+- [CodeMirror Searchbox](https://github.com/coderaiser/cm-searchbox) - аналогичен используемому в Ace, инструмент для
 поиска и замены текста.
-- [CodeMirror Show Invisibles](https://github.com/coderaiser/cm-show-invisibles) - добавляет режим показа невидимых символов,
-похожий на тот, что используется в Ace и Chrome Developer Tools.
+
+- [CodeMirror Show Invisibles](https://github.com/coderaiser/cm-show-invisibles) - добавляет режим показа невидимых символов
+похожий на тот, что используется в Ace и Chrome Developer Tools, но в отличие от последнего, способен показывать окончания
+строк.
+
+Кстати, эта статья частично пишется в редакторе Dword, который вполне пригоден для работы с текстом любого вида.
 
 ### Mollify
 
