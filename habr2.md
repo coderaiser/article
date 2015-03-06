@@ -120,9 +120,10 @@ Console('.console', function() {
 
 ![Edward](https://raw.githubusercontent.com/cloudcmd/edward/master/img/edward.png "Edward")
 
-Редактор [Edward](https://github.com/cloudcmd/edward "Edward"), основанный на [ace](http://ace.c9.io "Ace") так же выделился в отдельный модуль,
-который может использовать не только Cloud Commander, но и любое другое приложение, так как это тоже `express middleware`.
-Из коробки есть горячие клавиши, а так же `minify` и `beautify`. Для начала использования достаточно кода на сервере:
+Редактор [Edward](https://github.com/cloudcmd/edward "Edward"), основанный на [ace](http://ace.c9.io "Ace")
+так же выделился в отдельный модуль, который может использовать не только Cloud Commander,
+но и любое другое приложение, так как это тоже `express middleware`. Из коробки есть горячие клавиши,
+а так же `minify` и `beautify`. Для начала использования достаточно кода на сервере:
 
 ```js
 app.use(edward({
@@ -152,6 +153,25 @@ edward('[data-name="js-edit"]', function(el) {
     console.log('edward is ready');
 });
 ```
+
+### Dword
+
+![Dword](https://raw.githubusercontent.com/coderaiser/dword/master/img/dword.png "Dword")
+
+Редактор [Dword](https://github.com/coderaiser/dword "Dword") в плане кода, полностью совместим с Edward.
+Основное отличие в том, что Dword основан на [CodeMirror](http://codemirror.net "CodeMirror").
+Теперь пользователи Cloud Commander имеют возможность выбирать редактор по вкусу.
+И Ace и Codemirror достаточно зрелые проекты. Правда у них обоих есть недостатки:
+
+- с помощью Ace не получится нормально редактировать код на мобильном, поскольку нет возможности скоролить код.
+- CodeMirror не использует **WebWorkers**, поэтому, при использовании JSHINT редактор начинает работать медленее, чем Ace.
+
+Во время адаптации CodeMirror к возможности стать полноценной заменой Ace было написано несколько плагинов:
+
+- [CodeMirror Searchbox](https://github.com/coderaiser/cm-searchbox) - аналогичен используемому в Ace инструмент для
+поиска и замены текста.
+- [CodeMirror Show Invisibles](https://github.com/coderaiser/cm-show-invisibles) - добавляет режим показа невидимых символов,
+похожий на тот, что используется в Ace и Chrome Developer Tools.
 
 ### Mollify
 
