@@ -201,7 +201,7 @@ edward('[data-name="js-edit"]', function(el) {
 ### Ponse
 
 В комментариях к предыдущей статье меня спрашивали по-поводу используемого веб-сервера. Так вот, это
-[ponse](https://github.com/coderaiser/ponse "Ponse"). Простой веб-сервер. С `express` тягатся не будет,
+[ponse](https://github.com/coderaiser/ponse "Ponse"). Простой веб-сервер. С `express` тягаться не будет,
 но с некоторыми вещами справляется неплохо.
 
 ### Pipe-io
