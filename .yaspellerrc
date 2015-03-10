@@ -1,0 +1,32 @@
+{
+    "excludeFiles": [
+        ".git",
+        "node_modules"
+    ],
+    "fileExtensions": [
+        ".md"
+    ],
+    "dictionary": [
+        "CodeMirror",
+        "Dword",
+        "ES5",
+        "GitHub",
+        "JSHINT",
+        "Ponse",
+        "Rendy",
+        "Searchbox",
+        "Spawnify",
+        "Win32",
+        "base64",
+        "dev",
+        "io",
+        "js",
+        "npm",
+        "publish-io",
+        "spawnify",
+        "symlinks",
+        "tmp",
+        "tomas",
+        "win32"
+    ]
+}
