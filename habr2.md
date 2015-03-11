@@ -185,7 +185,7 @@ edward('[data-name="js-edit"]', function(el) {
 
 ### Rendy
 
-Когда нужен действительно простой шаблонизатор [rendy](https://github.com/coderaiser/rendy "Rendy") может пригодится.
+Когда нужен действительно простой шаблонизатор [Rendy](https://github.com/coderaiser/rendy "Rendy") может пригодится.
 Он делает одну вещь. Делает это максимально просто. Работает во всех окружениях, поддерживающих ES5.
 Использовать можно таким образом:
 
@@ -201,7 +201,7 @@ edward('[data-name="js-edit"]', function(el) {
 ### Ponse
 
 В комментариях к предыдущей статье меня спрашивали по-поводу используемого веб-сервера. Так вот, это
-[ponse](https://github.com/coderaiser/ponse "Ponse"). Простой веб-сервер. С `express` тягаться не будет,
+[Ponse](https://github.com/coderaiser/ponse "Ponse"). Простой веб-сервер. С `express` тягаться не будет,
 но с некоторыми вещами справляется неплохо.
 
 ### Pipe-io
