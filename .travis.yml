@@ -3,7 +3,7 @@ node_js:
     - iojs
 
 script:
-  - node run yaspeller
+  - npm run yaspeller
 
 notifications:
     email:
