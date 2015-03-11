@@ -191,12 +191,12 @@ edward('[data-name="js-edit"]', function(el) {
 Использовать можно таким образом:
 
 ```js
-    var Tmpl    = 'hello {{ where }}';
-        result  = rendy(Tmpl, {
-            where: 'in browser'
-        });
-        // returns
-        'hello in browser'
+var Tmpl    = 'hello {{ where }}';
+    result  = rendy(Tmpl, {
+        where: 'in browser'
+    });
+    // returns
+    'hello in browser'
 ```
 
 ### Ponse
