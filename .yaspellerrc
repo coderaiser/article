@@ -1,7 +1,8 @@
 {
     "excludeFiles": [
         ".git",
-        "node_modules"
+        "node_modules",
+        "xakep.md", "habr.md"
     ],
     "fileExtensions": [
         ".md"
