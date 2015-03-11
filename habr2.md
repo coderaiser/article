@@ -212,9 +212,45 @@ var Tmpl    = 'hello {{ where }}';
 `pipe`. [Pipe-io](https://github.com/coderaiser/pipe-io "Pipe-io") помогает решить
 эту проблему, упростив синтаксис до минимума:
 
+Было так:
+
 ```js
- pipe([readStream, writeStream], function(error) {
-    console.log(error || 'done');
+var fs      = require('fs'),
+    read    = fs.createReadStream('README.md'),
+    write   = fs.createWriteStream('README2.md'),
+    error   = function(e) {
+        e && console.error(e.message);
+        return e;
+    }
+/* обработчики ошибок */
+read.on('error', e);
+write.on('error', e);
+
+/* нужно убедится, что файл открыт на запись*/
+write.on('open', function() {
+    read.pipe(write);
+});
+
+/* сюда мы зайдем в самом конце, если все успешно пройдет */
+write.on('end', function() {
+    console.log('end');
+});
+```
+
+Стало так:
+
+```js
+var fs      = require('fs'),
+    pipe    = require('pipe-io'),
+    read    = fs.createReadStream('README.md'),
+    write   = fs.createWriteStream('README2.md'),
+    error   = function(e) {
+        e && console.error(e.message);
+        return e;
+    }
+    
+pipe([read, write], function(e) {
+    error(e) || console.log('done');
 });
 ```
 
