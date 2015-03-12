@@ -207,8 +207,9 @@ var Tmpl    = 'hello {{ where }}';
 
 ### Pipe-io
 
-Когда дело заходит о [потоках данных](https://iojs.org/api/stream.html "Потоки"), есть несколько нюансов, которые должны быть учтены.
-Например то, что обработчики ошибок должны навешиватся на каждый стрим при использовании
+Когда заходит разговор о [потоках данных](https://iojs.org/api/stream.html "Потоки"), есть несколько нюансов, которые должны быть учтены.
+
+Один из них это такой: обработчики ошибок должны навешиватся на каждый стрим при использовании
 `pipe`. [Pipe-io](https://github.com/coderaiser/pipe-io "Pipe-io") помогает решить
 эту проблему, упростив синтаксис до минимума.
 Было так:
@@ -217,23 +218,35 @@ var Tmpl    = 'hello {{ where }}';
 var fs      = require('fs'),
     read    = fs.createReadStream('README.md'),
     write   = fs.createWriteStream('README2.md'),
+    
+    open    = function(msg) {
+        read.pipe(write);
+    },
+    finish  = function() {
+        console.log('done');
+        done();
+    },
     error   = function(e) {
         e && console.error(e.message);
-        return e;
+        done();
+    },
+    
+    done    = function() {
+        read.removeListener('error', error);
+        write.removeListener('error', error);
+        write.removeListener('open', open);
+        write.removeListener('finish', finish);
     }
+
 /* обработчики ошибок */
 read.on('error', e);
 write.on('error', e);
 
-/* нужно убедится, что файл открыт на запись*/
-write.on('open', function() {
-    read.pipe(write);
-});
+/* когда файл откроется на запись - можно начинать */
+write.on('open', open);
 
-/* сюда мы зайдем в самом конце, если все успешно пройдет */
-write.on('finish', function() {
-    console.log('finish');
-});
+/* сюда мы зайдем в самом конце, если все успешно закончится */
+write.on('finish', finish);
 ```
 
 Стало так:
