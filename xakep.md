@@ -97,8 +97,8 @@ npm install
 Еще один способ установить Cloud Commander - через npm (Node Package Manager).
 Достаточно написать команду:
 ```
-npm install -g cloudcmd # установка
-node cloudcmd           # запуск
+npm i cloudcmd -g  # установка
+cloudcmd           # запуск
 ```
 
 
