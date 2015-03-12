@@ -231,8 +231,8 @@ write.on('open', function() {
 });
 
 /* сюда мы зайдем в самом конце, если все успешно пройдет */
-write.on('end', function() {
-    console.log('end');
+write.on('finish', function() {
+    console.log('finish');
 });
 ```
 
