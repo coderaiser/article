@@ -1,4 +1,4 @@
-# Cloud Commander 2
+# Модульный файловый менеджер Cloud Commander 2.0
 [habr]:         http://habrahabr.ru/post/226257/ "Двухпанельный веб-файл менеджер Cloud Commander"
 
 [DWORD]:        https://github.com/coderaiser/dword
