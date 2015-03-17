@@ -1,11 +1,16 @@
-# Cloud Commander 2.0
-[habr]:         habrahabr.ru/post/226257/ "Двухпанельный веб-файл менеджер Cloud Commander"
+# Cloud Commander 2
+[habr]:         http://habrahabr.ru/post/226257/ "Двухпанельный веб-файл менеджер Cloud Commander"
+
 [DWORD]:        https://github.com/coderaiser/dword
 [EDWARD]:       https://github.com/cloudcmd/edward
 
 [BROWSERIFY]:   http://habrahabr.ru/post/224825/ "Начинаем работать с browserify"
 [GRUNT]:        http://habrahabr.ru/post/244721/ "Пересмотренное руководство по Grunt для начинающих"
-[GULP]:         habrahabr.ru/post/208890/ "GulpJS — фантастически быстрый сборщик проектов"
+[GULP]:         http://habrahabr.ru/post/208890/ "GulpJS — фантастически быстрый сборщик проектов"
+
+[YASPELLER]:    http://habrahabr.ru/post/252297/ "Поиск опечаток в проекте"
+[JSCS]:         http://habrahabr.ru/post/220229/ "JSCS: JavaScript Code Style"
+[CONVENTIONS]:  http://javascript.crockford.com/code.html "Code Conventions for the JavaScript Programming Language"
 
 ## Вступление
 В [прошлой статье][habr] было рассказано о том, что из себя представляет Cloud Commander,
@@ -299,8 +304,14 @@ pipe([read, write], function(e) {
 
 ## Разработка
 
-Процесс разработки не особо изменился, главное отличие в том, что разработка ведется не в одном глобальном репозитории,
-а в репозитории модуля, в котором найден баг или нужна новая фича.
+Процесс разработки не особо изменился, главное отличие в том, что разработка ведется не только в одном глобальном репозитории,
+а и в репозитории модуля, в котором найден баг или нужна новая фича.
+
+В главный репозиторий, в арсенал проверки кода и документации, добавились два новых инструмента:
+[jscs][JSCS] и [yaspeller][YASPELLER].
+В процессе генерации конфига с помощью `--auto-configure`, выяснилось, что мой код, с небольшим исключением, 
+больше всего удовлетворяет соглашениям [Дугласа Крокфорда][CONVENTIONS]. С которыми я, конечно, был знаком раньше.
+Но почему-то мне казалось, что у нас с ним гораздо больше различий.
 
 Хочется сказать пару слов о последнем на сегодня модуле [wisdom](https://github.com/coderaiser/wisdom "Wisdom").
 Он состоит из нескольких маленьких модулей, каждый из которых упрощает и автоматизирует рутинную работу JavaScript программиста,
