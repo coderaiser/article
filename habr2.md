@@ -12,6 +12,7 @@
 [BOWER]:        http://habrahabr.ru/sandbox/89103/ "Знакомство с Bower"
 [CONVENTIONS]:  http://javascript.crockford.com/code.html "Code Conventions for the JavaScript Programming Language"
 [GIT]:          https://github.com/bower/bower#windows-users "Как установить Git под Windows"
+[ARTICLE]:      https://github.com/coderaiser/article/ "Репозиторий статей"
 [GITHUB]:       https://github.com/coderaiser/cloudcmd "Cloud Commander"
 [RELEASE]:      https://github.com/coderaiser/cloudcmd/releases "Cloud Commander Releases"
 
@@ -380,3 +381,5 @@ node модули - это symlinks к соответственным репоз
 В любом случае, как бы читатель к этому не пришел, очень надеюсь, что тенденция к маленьким приложениям будет брать верх
 перед фреймворками, которые делают сразу много дел. И последние наблюдения в этом направлении вполне оправдывают мои ожидания,
 что не может не радовать.
+
+Обо всех опечатках, в случае нахождения, прошу оповещать в личку, либо в `hidden` ветку [репозитория][ARTICLE].
