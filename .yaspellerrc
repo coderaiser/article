@@ -28,6 +28,7 @@
         "Spawnify",
         "Win32",
         "base64",
+        "browserify",
         "codeschool",
         "dev",
         "emacs",

@@ -2,6 +2,7 @@
 [habr]:         habrahabr.ru/post/226257/ "Двухпанельный веб-файл менеджер Cloud Commander"
 [DWORD]:        https://github.com/coderaiser/dword
 [EDWARD]:       https://github.com/cloudcmd/edward
+[BROWSERIFY]:   http://habrahabr.ru/post/224825/
 
 ## Вступление
 В [прошлой статье][habr] было рассказано о том, что из себя представляет Cloud Commander,
@@ -68,7 +69,7 @@ base64. При этом результат складывают в папку tm
 ### Join
 
 Есть разные способы ускорить загрузку веб-страницы: объединить файлы, минифицировать, скомпилировать с помощью
-`browserify`. [join](https://github.com/coderaiser/join-io "Join") работает иначе, но цель у него та же самая.
+[browserify](BROWSERIFY). [join](https://github.com/coderaiser/join-io "Join") работает иначе, но цель у него та же самая.
 Он склеивает файлы на лету в один http-запрос, при этом, при необходимости, минифицируя их, с помощью `Minify`.
 Подключить его достаточно просто, поскольку он представляет из себя `middleware` совместимый с
 [express](http://expressjs.com "Express"). И такого кода вполне достаточно:
