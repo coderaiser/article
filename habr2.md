@@ -16,7 +16,7 @@
 [GITHUB]:       https://github.com/coderaiser/cloudcmd "Cloud Commander"
 [RELEASE]:      https://github.com/coderaiser/cloudcmd/releases "Cloud Commander Releases"
 
-## Вступлениеd
+## Вступление
 В [прошлой статье][habr] было рассказано о том, что из себя представляет Cloud Commander,
 об основных причинах появления, недостатках, достоинствах, процессе разработки, а так же философии
 файлового менеджера. Сегодня мы поговорим о том, что изменилось с того времени, и как эти изменения
