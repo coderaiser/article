@@ -98,6 +98,10 @@ app.use(join({
 <link rel="/join:/css/normilize.css:/css/style.css">
 ```
 
+### Restafary
+
+[Restafary](https://github.com/coderaiser/node-restafary "Restafary") - это реализация [REST](https://ru.wikipedia.org/wiki/REST "REST") для [CRUD](https://ru.wikipedia.org/wiki/CRUD "CRUD") файловой системы, которая выполнена как `middleware` для `express` и может использоваться везде, где есть необходимость в сетевой обработке файлов.
+
 ### Console
 
 ![Console](https://raw.githubusercontent.com/cloudcmd/console/master/img/console.png "Console")
