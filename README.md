@@ -4,7 +4,9 @@ Article [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 [BuildStatusURL]:           https://travis-ci.org/coderaiser/article  "Build Status"
 [HABR]:                     http://habrahabr.ru/post/226257/ "Двухпанельный веб-файл менеджер Cloud Commander"
 [HABR2]:                    http://habrahabr.ru/post/253437/ "Модульный файловый менеджер Cloud Commander 2.0"
+[XAKEP]:                    https://xakep.ru/2014/02/14/cloud-commander "Облачный файловый менеджер Cloud Commander"
 
 Список статей:
+- [Облачный файловый менеджер Cloud Commander](XAKEP)
 - [Двухпанельный веб-файл менеджер Cloud Commander][HABR]
 - [Модульный файловый менеджер Cloud Commander 2.0][HABR2]
