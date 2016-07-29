@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/coderaiser/article",
   "devDependencies": {
-    "husky": "~0.7.0",
+    "husky": "^0.11.6",
     "yaspeller": "~1.0.2"
   }
 }
