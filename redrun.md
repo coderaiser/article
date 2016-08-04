@@ -37,5 +37,115 @@
 Принцип действия `redrun` значительно отличается от перечисленных выше аналогов: вместо того, что бы запускать каждую команду отдельно, он объединяет все вложенные команды в одну большую и уже ее передает на выполнение системному шеллу. Благодаря такой оптимизации, скорость выполнения `npm-скриптов` существенно возрастает, при этом остается возможность запуска скриптов параллельно и последовательно.
 
 ## Взаимодействие
+
+Рассмотрим пример использования `redrun`. Для начала установка (ничего особенного):
+
+```sh
+$ npm i redrun -g
+```
+
+Дальше инициализируем `package.json` с помощью `npm init -y`:
+
+```sh
+$ mkdir example
+$ cd example
+$ npm init -y
+
+Wrote to /home/coderaiser/example/package.json:
+
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "coderaiser"
+  "license": "MIT",
+  "description": ""
+}
+```
+
+Установим `tape` для тестов, и запишем простейший тест, который проходит.
+
+```sh
+npm i tape -D
+echo -e "const test = require('tape');\ntest('some test', (t) => t.end());" > test.js
+```
+
+Теперь в секцию `scripts` добавим пару разделов:
+
+```js
+{
+    "test": "tape 'test/**/*.js'",
+    "watch:test": "npm run watcher -- npm test",
+    "watcher": "nodemon -w test -w lib --exec",
+}
+```
+
+После чего запустим тест с помощью `npm`:
+
+```sh
+$ time npm test
+
+reel   0m6.617s
+user   0m1.262s
+sys    0m1.778s
+```
+
+А теперь то же самое, только с помощью `redrun`:
+
+```sh
+$ time redrun test
+
+real    0m2.389s
+user    0m0.495s
+sys     0m0.544s
+```
+
+Даже на таком простом примере видно, что скорость выполнения почти в 3 раза выше.
+
+Теперь попробуем тоже самое со скриптом `npm watch:test`:
+
+```sh
+$ time redrun watch:test
+> nodemon -w test -w lib --exec tape 'test/**/*.js'
+/bin/sh: 1: nodemon: not found
+Command failed: nodemon -w test -w lib --exec tape 'test/**/*.js'
+
+real    0m1.211s
+user    0m0.208s
+sys    0m0.332s
+```
+
+Ага, `nodemon` мы не установили, и нам потребовалась всего 1 секунда, что бы это узнать. Хочу обратить внимания читателя, на то, что команда полностью развернулась, и `nodemon` будет перезапускать не посредственно `tape`, а не `npm test`.
+
+Попробуем тоже-самое выполнить с помощью `npm`:
+
+```sh
+> article@1.0.0 watch:test /home/coderaiser/article
+> npm run watcher -- npm test
+
+
+> article@1.0.0 watcher /home/coderaiser/article
+> nodemon -w test -w lib --exec "npm" "test"
+
+sh: 1: nodemon: not found
+
+npm ERR! syscall spawn
+npm ERR! spawn ENOENT
+npm ERR! article@1.0.0 watch:test: `npm run watcher -- npm test`
+npm ERR! Exit status 1
+
+real    0m11.594s
+user    0m2.181s
+sys     0m2.849s
+```
+
+С помощью `npm` нам потребовалось 11 секунд, для того, что бы узнать, что `nodemon` не установлен.
+
 ## Вывод
+
+`npm` хороший инструмент, который исправно выполняет то, для чего предназначен. Экосистема `node.js` гораздо стремительнее эволюционирует чем в аналогичных языках, и не последнее место в этом процессе отыгрывает `npm` (а одно из первых). Я думаю, придет момент, когда `redrun` станет не нужен в силу того, что `npm` и так все быстро будет делать. Но пока этот момент не наступил, и для того, что бы его приблизить, создан помощник `npm` в таком непростом деле как запуск скриптов.
 

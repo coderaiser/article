@@ -5,7 +5,9 @@
   "description": "articles",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape 'test/**/*.js'",
+    "watch:test": "npm run watcher -- npm test",
+    "watcher": "nodemon -w test -w lib --exec",
     "spell": "npm run yaspeller",
     "yaspeller": "yaspeller .",
     "precommit": "yaspeller ."
