@@ -67,7 +67,7 @@
 
 #### Redrun
 
-![Redrun][https://raw.githubusercontent.com/coderaiser/redrun/master/redrun.png "Redrun"]
+![Redrun](https://raw.githubusercontent.com/coderaiser/redrun/master/redrun.png "Redrun")
 
 Принцип действия [redrun](https://github.com/coderaiser/redrun "Redrun") значительно отличается от аналогов: вместо того, что бы запускать каждую команду отдельно, он объединяет все вложенные команды в одну большую, и уже ее передает на выполнение системному шеллу. Благодаря такой оптимизации, скорость выполнения `npm-скриптов` существенно возрастает, при этом остается возможность запуска скриптов параллельно и последовательно.
 
