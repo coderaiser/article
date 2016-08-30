@@ -92,7 +92,7 @@ jshint lib test && jscs lib test && eslint lib test
 $ npm i redrun -g
 ```
 
-Дальше инициализируем `package.json` с помощью `npm init -y`:
+Дальше создаем `package.json` с помощью `npm init -y`:
 
 ```sh
 $ mkdir example
