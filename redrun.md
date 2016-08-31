@@ -117,8 +117,17 @@ Wrote to /home/coderaiser/example/package.json:
 Установим `tape` для тестов, и запишем простейший тест, который проходит.
 
 ```sh
-npm i tape -D
-echo -e "const test = require('tape');\ntest('some test', (t) => t.end());" > test.js
+$ npm i tape -D
+$ cat > test.js
+'use strict';
+
+const test = require('tape');
+
+test('some test', (t) => {
+    t.pass();
+    t.end();
+});
+^C
 ```
 
 Теперь в секцию `scripts` добавим пару разделов:
@@ -208,10 +217,11 @@ $ redrun watch:test
 [nodemon] starting `tape test.js`
 TAP version 13
 # some test
+ok 1 (unnamed assert)
 
-1..0
-# tests 0
-# pass  0
+1..1
+# tests 1
+# pass  1
 
 # ok
 
