@@ -127,7 +127,7 @@ echo -e "const test = require('tape');\ntest('some test', (t) => t.end());" > te
 {
     "test": "tape test.js",
     "watch:test": "npm run watcher -- npm test",
-    "watcher": "nodemon -w test -w lib --exec",
+    "watcher": "nodemon -w test -w lib --exec"
 }
 ```
 
