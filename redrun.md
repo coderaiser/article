@@ -98,7 +98,6 @@ $ npm i redrun -g
 $ mkdir example
 $ cd example
 $ npm init -y
-
 Wrote to /home/coderaiser/example/package.json:
 
 {
