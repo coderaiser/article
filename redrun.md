@@ -126,7 +126,7 @@ echo -e "const test = require('tape');\ntest('some test', (t) => t.end());" > te
 
 ```js
 {
-    "test": "tape 'test/**/*.js'",
+    "test": "tape test.js",
     "watch:test": "npm run watcher -- npm test",
     "watcher": "nodemon -w test -w lib --exec",
 }
@@ -158,9 +158,9 @@ sys     0m0.544s
 
 ```sh
 $ time redrun watch:test
-> nodemon -w test -w lib --exec tape 'test/**/*.js'
+> nodemon -w test -w lib --exec tape test.js
 /bin/sh: 1: nodemon: not found
-Command failed: nodemon -w test -w lib --exec tape 'test/**/*.js'
+Command failed: nodemon -w test -w lib --exec tape test.js
 
 real    0m1.211s
 user    0m0.208s
@@ -192,6 +192,34 @@ sys     0m2.849s
 ```
 
 С помощью `npm` нам потребовалось 11 секунд, для того, что бы узнать, что `nodemon` не установлен.
+
+Установим `nodemon`:
+
+```
+$ npm i nodemon -D
+```
+
+Попробуем снова:
+```sh
+$ redrun watch:test
+> nodemon -w test -w lib --exec tape test.js
+[nodemon] 1.10.2
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: test lib
+[nodemon] starting `tape test.js`
+TAP version 13
+# some test
+
+1..0
+# tests 0
+# pass  0
+
+# ok
+
+[nodemon] clean exit - waiting for changes before restart
+```
+
+Теперь все работает: запускается наблюдатель, который смотрит за изменениями в папках `test` и `lib` и перезапускает `tape test.js` - именно то, что нам нужно. При этом остается возможность использовать компактный синтаксис скриптов в package.json.
 
 #### Процесс разработки
 
