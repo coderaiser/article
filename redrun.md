@@ -180,6 +180,7 @@ sys     0m0.332s
 Попробуем тоже-самое выполнить с помощью `npm`:
 
 ```sh
+$ time npm run watch:test
 > article@1.0.0 watch:test /home/coderaiser/article
 > npm run watcher -- npm test
 
