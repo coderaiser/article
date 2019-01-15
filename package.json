@@ -9,8 +9,7 @@
     "watch:test": "npm run watcher -- npm test",
     "watcher": "nodemon -w test -w lib --exec",
     "spell": "npm run yaspeller",
-    "yaspeller": "yaspeller .",
-    "precommit": "yaspeller ."
+    "yaspeller": "yaspeller ."
   },
   "repository": {
     "type": "git",
@@ -25,5 +24,10 @@
   "devDependencies": {
     "husky": "^1.3.1",
     "yaspeller": "^5.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yaspeller ."
+    }
   }
 }
