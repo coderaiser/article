@@ -170,7 +170,7 @@ test('remove debugger: transformCode', (t) => {
 
 #### Codemods
 
-Не любую трансформацию нужно использовать каждый день, для разовых трансформаций можно сделать все тоже самое, только вместо публикации в `npm` разместить в папке `~/.putout`. Этого достаточно для что бы `putout` при запуске считывал трансформации и запускал их.
+Не любую трансформацию нужно использовать каждый день, для разовых трансформаций достаточно сделать все тоже самое, только вместо публикации в `npm` разместить в папке `~/.putout`. При запуске `putout` посмотрит в эту папку, подхватит и запустит трансформации.
 
 Вот пример трансформации, который заменяет подключение `tape` и [try-to-tape](https://github.com/coderaiser/try-to-tape) вызовом [supertape](https://github.com/coderaiser/supertape): [convert-tape-to-supertape](https://github.com/coderaiser/putout/tree/master/codemods/convert-tape-to-supertape).
 
