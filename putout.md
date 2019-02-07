@@ -357,7 +357,7 @@ module.exports.find = (ast, {traverse}) => {
     return places;
 };
 
-// исправление код выглядиит таким образом
+// удаляем код, найденный в предыдущем шаге
 module.exports.fix = (path) => {
     path.remove();
 };
