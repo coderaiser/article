@@ -400,3 +400,7 @@ test('remove debugger: transformCode', (t) => {
 
 Вот пример трансформации, который заменяет подключение `tape` и [try-to-tape](https://github.com/coderaiser/try-to-tape) вызовом [supertape](https://github.com/coderaiser/supertape): [convert-tape-to-supertape](https://github.com/coderaiser/putout/tree/master/codemods/convert-tape-to-supertape).
 
+## Заключение
+
+Хочу поблагодарить читателя за уделенное этому тексту внимание. Искренне надеюсь, что тема AST-трансформаций станет более популярна, и статьи об этом увлекательном процессе будут появляться чаще. Буду очень признателен любым замечаниям и предложениям связанным с дальнейшим направлением развития `putout`. [Создавайте issue](https://github.com/coderaiser/putout/issues/new), [присылайте пул реквесты](https://github.com/coderaiser/putout/compare), тестируйте, будем совместными усилиями работать над улучшением инструмента трансформации AST.
+
