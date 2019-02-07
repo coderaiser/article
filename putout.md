@@ -371,7 +371,7 @@ module.exports.fix = (path) => {
 
 ##### Пример теста плагина
 
-Для того, что бы упростить тестирование плагинов был написан инструмент [@putout/test](https://github.com/coderaiser/putout/tree/master/packages/test). По своей сути это ни что иное, как [tape](https://github.com/substack/tape), в который добавлено несколько методов для удобства и упрощения тестирования.
+Для того, что бы упростить тестирование плагинов был написан инструмент [@putout/test](https://github.com/coderaiser/putout/tree/master/packages/test). По своей сути это ни что иное, как обертка над [tape](https://github.com/substack/tape), с несколькими методами для удобства и упрощения тестирования.
 
 Тест для плагина `remove-debugger` может выглядит таким образом:
 
