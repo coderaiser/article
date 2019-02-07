@@ -431,7 +431,7 @@ const {
 const {one} = hello;
 ```
 
-Еще есть много опций, с которыми можно ознакомится [более детально](https://github.com/coderaiser/putout/tree/master/packages/eslint-config).
+Еще есть много включенных правил `eslint`, с которыми можно ознакомится [более детально](https://github.com/coderaiser/putout/tree/master/packages/eslint-config).
 
 ## Заключение
 
