@@ -113,7 +113,7 @@ const output = generate(ast, code);
 
 Как и `babel` `putout` преобразовывает код, но старается его минимально менять, таким образом его можно применять для работы с кодом, который хранится в репозитории.
 
-Еще стоит упоминуть [prettier](https://prettier.io/), это инструмент форматирования, по этому отличается кардинальным образом.
+Еще стоит упомянуть [prettier](https://prettier.io/), это инструмент форматирования, по этому отличается кардинальным образом.
 
 Ближе всего к `putout` находится [jscodeshift](https://github.com/facebook/jscodeshift), но он не поддерживает плагины, еще использует [ast-types](https://github.com/benjamn/ast-types) вместо [@babel/types](https://babeljs.io/docs/en/babel-types). 
 
