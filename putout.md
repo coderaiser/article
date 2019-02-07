@@ -404,6 +404,35 @@ test('remove debugger: transformCode', (t) => {
 
 Вот пример трансформации, который заменяет подключение `tape` и [try-to-tape](https://github.com/coderaiser/try-to-tape) вызовом [supertape](https://github.com/coderaiser/supertape): [convert-tape-to-supertape](https://github.com/coderaiser/putout/tree/master/codemods/convert-tape-to-supertape).
 
+### eslint-plugin-putout
+
+Напоследок стоит добавить один момент: `putout` старается минимально менять код, но если в друг так случится, что некоторые правила форматирования поломаются, на помощь всегда готов прийти `eslint --fix`, и для этой цели есть специальный плагин [eslint-plugin-putout](https://github.com/coderaiser/putout/tree/master/packages/eslint-plugin-putout). Он может скрасить многие ошибки форматирования, и конечно же может быть настроен в соответствии с предпочтениями разработчиков на конкретном проекте. Подключить его легко:
+
+```json
+{
+    "extends": [
+        "plugin:putout/recommended",
+    ],
+    "plugins": [
+        "putout"
+    ]
+}
+```
+
+Пока что в нем только одно правило: `one-line-destructuring`, делает оно следующее:
+
+```js
+// было
+const {
+    one
+} = hello;
+
+// станет
+const {one} = hello;
+```
+
+Еще есть много опций, с которыми можно ознакомится [более детально](https://github.com/coderaiser/putout/tree/master/packages/eslint-config).
+
 ## Заключение
 
 Хочу поблагодарить читателя за уделенное этому тексту внимание. Искренне надеюсь, что тема AST-трансформаций станет более популярна, и статьи об этом увлекательном процессе будут появляться чаще. Буду очень признателен любым замечаниям и предложениям связанным с дальнейшим направлением развития `putout`. [Создавайте issue](https://github.com/coderaiser/putout/issues/new), [присылайте пул реквесты](https://github.com/coderaiser/putout/compare), тестируйте, будем совместными усилиями работать над улучшением инструмента трансформации AST.
