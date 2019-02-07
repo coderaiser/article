@@ -77,7 +77,7 @@ a + b
 - [cherow](https://github.com/cherow/cherow) - новый игрок среди JavaScript-парсеров, заявляющий, что он самый быстрый;
 
 Существует стандарт JavaScript парсеров, он называется [ESTree](https://github.com/estree/estree) и определяет то, какие узлы как должны парсится.
-Для более детально разбора процесса реализации парсера можно почитать [super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler).
+Для более детально разбора процесса реализации парсера (а так же трансформатора и генератора) можно почитать [super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler).
 
 ### Трансформатор
 
