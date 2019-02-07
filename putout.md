@@ -115,7 +115,11 @@ const output = generate(ast, code);
 
 Еще стоит упомянуть [prettier](https://prettier.io/), это инструмент форматирования, и отличается он кардинальным образом.
 
-Очень не далеко от `putout` находится [jscodeshift](https://github.com/facebook/jscodeshift), но он не поддерживает плагины, не показывает сообщения об ошибках, а так же использует [ast-types](https://github.com/benjamn/ast-types) вместо [@babel/types](https://babeljs.io/docs/en/babel-types). 
+Очень не далеко от `putout` находится [jscodeshift](https://github.com/facebook/jscodeshift), но он не поддерживает плагины, не показывает сообщения об ошибках, а так же использует [ast-types](https://github.com/benjamn/ast-types) вместо [@babel/types](https://babeljs.io/docs/en/babel-types).
+
+### История появления
+
+В процессе работы мне очень помогает своими подсказками `eslint`. Но иногда от него хочется большего. К примеру, что бы он [удалял debugger](https://github.com/eslint/eslint/issues/10242), [исправлял test.only](https://github.com/atabel/eslint-plugin-tape/pull/3), а так же удалял неиспользуемые переменные. Последний пункт лег в основу `putout`, в процессе разработки, стало понятно, что это очень не просто и многие другие трансформации осуществить гораздо проще. Таким образом `putout` плавно перерос из одной функции в систему плагинов. Удаление неиспользуемых переменных и сейчас является самым сложным процессом, но это совсем не мешает развивать и поддерживать многие другие не менее полезные трансформации.
 
 ### Как Putout устроен изнутри
 
