@@ -184,6 +184,33 @@ const {
 } = user;
 ```
 
+Каждый плагин строится согласно [Философии Unix](https://ru.wikipedia.org/wiki/%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F_Unix#.D0.9C.D0.B0.D0.B9.D0.BA_.D0.93.D0.B0.D0.BD.D1.86.D0.B0.D1.80.D0.B7:_.D1.84.D0.B8.D0.BB.D0.BE.D1.81.D0.BE.D1.84.D0.B8.D1.8F_Unix), то есть они максимально просты, каждый выполняет одно действие, благодаря чему их легко комбинировать, ведь они, по-своей сути, являются фильтрами.
+
+К примеру, имея следующий код:
+
+```js
+const name = user.name;
+const password = user.password;
+```
+
+Он вначале с помощью [apply-destructuring](https://github.com/coderaiser/putout/tree/master/packages/plugin-apply-destructuring) преобразуется в:
+
+```js
+const {name} = user;
+const {password} = user;
+```
+
+После чего, с помощью [merge-destructuring-properties](https://github.com/coderaiser/putout/tree/master/packages/plugin-merge-destructuring-properties) преобразуется в:
+
+```js
+const {
+    name,
+    password
+} = user;
+```
+
+Таким образом плагины могут работать как отдельно, так и вместе. При создании собственных плагинов рекомендуется придерживатся это правила, и реализовывать плагин с минимальным функционалом, делающий только то, что нужно, а обо всем остальном позаботятся встроенные и пользовательские плагины. 
+
 #### Пример использования
 
 После того как мы ознакомились со встроенными правилами, мы можем рассмотреть пример использования `putout`.
