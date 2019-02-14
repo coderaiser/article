@@ -6,17 +6,8 @@
 
 ## Особенности react-hooks
 ## Преобразование класа в react-hooks
-### Подключение
 
-Установим `putout` вместе с плагином `@putout/plugin-react-hooks`:
-
-```sh
-npm i putout @putout/plugin-react-hooks -D
-```
-
-После чего попробуем `putout` в действии:
-
-Создадим файл `button.js`:
+Рассмотрим файл `button.js`:
 
 ```javascript
 import React, {Component} from 'react';
@@ -51,6 +42,26 @@ class Button extends Component {
     }
 }
 ```
+
+Для того, что бы преобразовать класс наследуемый от `Component` в функцию, использующую `react-hooks` необходимо проделать следующие шаги:
+
+- удалить `bind`
+- переименовать приватные методы в публичные (убрать "_");
+- поменять `this.state` на использование хуков
+- поменять `this.setState` на использование хуков
+- убрать `this` отовсюду
+- конвертировать `class` в функцию
+- в импортах использовать `useState` вместо `Component`
+
+### Подключение
+
+Установим `putout` вместе с плагином `@putout/plugin-react-hooks`:
+
+```sh
+npm i putout @putout/plugin-react-hooks -D
+```
+
+После чего попробуем `putout` в действии.
 
 ```sh
 coderaiser@cloudcmd:~/example$ putout button.js
