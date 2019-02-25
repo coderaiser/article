@@ -241,6 +241,8 @@ function Button(props) {
 }
 ```
 
+Рассмотрим реализацию правила [remove-this](https://github.com/coderaiser/putout/tree/v4.3.2/packages/plugin-react-hooks/lib/remove-this):
+
 ```javascript
 // информация для вывода в консоль
 module.exports.report = ({name}) => `should be used "${name}" instead of "this.${name}"`;
