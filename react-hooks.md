@@ -337,6 +337,114 @@ test('plugin-react-hooks: remove-this: transform', (t) => {
 });
 ```
 
+### В импортах использовать `useState` вместо `Component`
+
+Рассмотрим реализацию правила [convert-import-component-to-use-state](https://github.com/coderaiser/putout/tree/v4.3.2/packages/plugin-react-hooks/lib/convert-import-component-to-use-state).
+
+Для того, что бы заменить выражения:
+
+```javascript
+import React, {Component} from 'react'
+```
+
+на
+
+```javascript
+import React, {useState} from 'react'
+```
+
+Необходимо обработать узел [ImportDeclaration](https://github.com/estree/estree/blob/master/es2015.md#imports):
+
+
+```json
+ {
+    "type": "ImportDeclaration",
+    "specifiers": [{
+        "type": "ImportDefaultSpecifier",
+        "local": {
+            "type": "Identifier",
+            "name": "React"
+        }
+      }, {
+        "type": "ImportSpecifier",
+        "imported": {
+             "type": "Identifier",
+             "name": "Component"
+        },
+        "local": {
+            "type": "Identifier",
+            "name": "Component"
+        }
+    }],
+    "source": {
+        "type": "StringLiteral",
+        "value": "react"
+    }
+}
+```
+
+Нам нужно найти `ImportDeclaration` с `source.value = react`, после чего обойти массив `specifiers` в поисках `ImportSpecifier` с полем `name = Component`:
+
+```javascript
+const {isImportSpecifier} = require('putout').types;
+
+// вернем сообщение об ошибке
+module.exports.report = () => 'useState should be used instead of Component';
+
+// присвоим новое имя
+module.exports.fix = (path) => {
+    const {node} = path;
+
+    node.imported.name = 'useState';
+    node.local.name = 'useState';
+};
+
+// найдем нужный узел
+module.exports.find = (ast, {push, traverse}) => {
+    traverse(ast, {
+        ImportDeclaration(path) {
+            const {source} = path.node;
+
+            // если не react, нет смысла продолжать
+            if (source.value !== 'react')
+                return;
+
+            const name = 'Component';
+            const specifiersPaths = path.get('specifiers');
+            for (const specPath of specifiersPaths) {
+                // если это не ImportSpecifier - идем дальше 
+                if (!specPath.isImportSpecifier())
+                    continue;
+                
+                // если это не Compnent - идем дальше
+                if (!specPath.get('imported').isIdentifier({name}))
+                    continue;
+
+                push(specPath);
+            }
+        },
+    });
+};
+```
+
+Рассмотрим простейший тест:
+
+```javascript
+const test = require('@putout/test')(__dirname, {
+    'convert-import-component-to-use-state': require('.'),
+});
+
+test('plugin-react-hooks: convert-import-component-to-use-state: report', (t) => {
+    t.report('component', 'useState should be used instead of Component');
+    t.end();
+});
+
+test('plugin-react-hooks: convert-import-component-to-use-state: transform', (t) => {
+    t.transformCode(`import {Component} from 'react'`, `import {useState} from 'react'`);
+    t.end();
+});
+```
+
 ## Заключение
 
 Сегодня мы рассмотрели один из способов автоматизированного рефакторинга классов реакт на реакт хуки. В данный момент плагин `@putout/plugin-react-hooks` поддерживает лишь базовые механизмы, но он может быть существенно улучшен в случае заинтересованности и вовлеченности сообщества. Буду рад обговорить в комментариях замечания, идеи, примеры использования, а так же недостающий функционал.
