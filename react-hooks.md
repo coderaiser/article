@@ -386,8 +386,6 @@ import React, {useState} from 'react'
 Нам нужно найти `ImportDeclaration` с `source.value = react`, после чего обойти массив `specifiers` в поисках `ImportSpecifier` с полем `name = Component`:
 
 ```javascript
-const {isImportSpecifier} = require('putout').types;
-
 // вернем сообщение об ошибке
 module.exports.report = () => 'useState should be used instead of Component';
 
