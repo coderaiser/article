@@ -226,7 +226,7 @@ function Button(props) {
 #### Убрать `this` отовсюду
 
 Поскольку классы мы не используем, все выражения вида `this.setEnabled` должны преобразоваться в `setEnabled`.
-Для этого мы пройдем по узлам [ThisExpression](https://github.com/estree/estree/blob/master/es5.md#thisexpression), которые, в свою очередь являются дочерними о отношению к [MemberExpression](https://github.com/estree/estree/blob/master/es5.md#memberexpression), и располгаюатся в поле `object`, таким образом:
+Для этого мы пройдем по узлам [ThisExpression](https://github.com/estree/estree/blob/master/es5.md#thisexpression), которые, в свою очередь являются дочерними о отношению к [MemberExpression](https://github.com/estree/estree/blob/master/es5.md#memberexpression), и располагаются в поле `object`, таким образом:
 
 ```json
 {
