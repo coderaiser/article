@@ -159,6 +159,16 @@ const [error, data] = await tryToCatch(readFile, path, 'utf8');
 npm i putout @putout/plugin-react-hooks -D
 ```
 
+Далее создадим файл `.putout.json`:
+
+```json
+{
+    "plugins": [
+        "react-hooks"
+    ]
+}
+```
+
 После чего попробуем `putout` в действии.
 
 ```sh
@@ -209,7 +219,121 @@ function Button(props) {
 }
 ```
 
-### Настройка
+### Программная реализация
+
+Рассмотрим детальнее несколько описанных выше правил.
+
+#### Убрать `this` отовсюду
+
+Поскольку классы мы не используем, все выражения вида `this.setEnabled` должны преобразоваться в `setEnabled`.
+Для этого мы пройдем по узлам [ThisExpression](https://github.com/estree/estree/blob/master/es5.md#thisexpression), которые, в свою очередь являются дочерними о отношению к [MemberExpression](https://github.com/estree/estree/blob/master/es5.md#memberexpression), и располгаюатся в поле `object`, таким образом:
+
+```json
+{
+    "type": "MemberExpression",
+    "object": {
+        "type": "ThisExpression",
+    },
+    "property": {
+        "type": "Identifier",
+        "name": "setEnabled"
+    }
+}
+```
+
+```javascript
+// информация для вывода в консоль
+module.exports.report = ({name}) => `should be used "${name}" instead of "this.${name}"`;
+
+// способ исправления правила
+module.exports.fix = ({path}) => {
+    // заменяем: MemberExpression -> Identifier 
+    path.replaceWith(path.get('property'));
+};
+
+module.exports.find = (ast, {push}) => {
+    traverseClass(ast, {
+        ThisExpression(path) {
+            const {parentPath} = path;
+            const propertyPath = parentPath.get('property');
+
+            //сохраняем найденную информацию для дальнейшей обработки
+            const {name} = propertyPath.node;
+            push({
+                name,
+                path: parentPath,
+            });
+        },
+    });
+};
+```
+
+В описанном выше коде используется функция-утилита `traverseClass` для нахождения класса, она не так важна для общего понимания, но все же ее имеет смысл привести, для большей точности:
+
+```javascript
+// Обходим классы один за другим
+function traverseClass(ast, visitor) {
+    traverse(ast, {
+        ClassDeclaration(path) {
+            const {node} = path;
+            const {superClass} = node;
+
+            if (!isExtendComponent(superClass))
+                return;
+
+            path.traverse(visitor);
+        },
+    });
+};
+
+// проверяем является ли класс наследуемым от Component
+function isExtendComponent(superClass) {
+    const name = 'Component';
+
+    if (isIdentifier(superClass, {name}))
+        return true;
+
+    if (isMemberExpression(superClass) && isIdentifier(superClass.property, {name}))
+        return true;
+
+    return false;
+}
+```
+
+Тест, в свою очередь, может выглядеть таким образом:
+
+```javascript
+const test = require('@putout/test')(__dirname, {
+    'remove-this': require('.'),
+});
+
+test('plugin-react-hooks: remove-this: report', (t) => {
+    t.report('this', `should be used "submit" instead of "this.submit"`);
+    t.end();
+});
+
+test('plugin-react-hooks: remove-this: transform', (t) => {
+    const from = `
+        class Hello extends Component {
+            render() {
+                return (
+                    <button onClick={this.setEnabled}/>
+                );
+            }
+        }
+    `;
+
+    const to = `
+        class Hello extends Component {
+            render() {
+                return <button onClick={setEnabled}/>;
+            }
+        }
+    `;
+    t.transformCode(from, to);
+    t.end();
+});
+```
 
 ## Заключение
 
