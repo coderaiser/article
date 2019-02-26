@@ -17,27 +17,27 @@ export default Button;
 class Button extends Component {
     constructor() {
         super();
-        
+
         this.state = {
             enabled: true
         };
-        
+
         this.toogle = this._toggle.bind(this);
     }
-    
+
     _toggle() {
         this.setState({
             enabled: false,
         });
     }
-    
+
     render() {
         const {enabled} = this.state;
-        
+
         return (
             <button
                 enabled={enabled}
-                onClick={this.setEnabled}
+                onClick={this.toggle}
             />
         );
     }
@@ -52,15 +52,15 @@ export default Button;
 
 function Button(props) {
     const [enabled, setEnabled] = useState(true);
-    
+
     function toggle() {
         setEnabled(false);
     }
-    
+
     return (
         <button
             enabled={enabled}
-            onClick={setEnabled}
+            onClick={toggle}
         />
     );
 }
@@ -133,7 +133,7 @@ const data = result[1];
 const [error, data] = await tryToCatch(readFile, path, 'utf8');
 ```
 
-Если идея такого использования деструктуризации пришла мне, то почему ей не прийти и создателям реакта, ведь по сути, мы имеешь что-то типо функции которая имеет 2 возвращаемых значения: [кортеж](https://ru.wikibooks.org/wiki/Haskell/ListsAndTuples#%D0%9A%D0%BE%D1%80%D1%82%D0%B5%D0%B6%D0%B8) из хаскеля.
+Если идея такого использования деструктуризации пришла мне, то почему ей не прийти и создателям реакта, ведь по сути, мы имеем что-то типо функции которая имеет 2 возвращаемых значения: [кортеж](https://ru.wikibooks.org/wiki/Haskell/ListsAndTuples#%D0%9A%D0%BE%D1%80%D1%82%D0%B5%D0%B6%D0%B8) из хаскеля.
 
 На этом лирическое отступление можно закончить и перейти к вопросу преобразования.
 
@@ -205,15 +205,15 @@ export default Button;
 
 function Button(props) {
     const [enabled, setEnabled] = useState(true);
-    
+
     function toggle() {
         setEnabled(false);
     }
-    
+
     return (
         <button
             enabled={enabled}
-            onClick={setEnabled}
+            onClick={toggle}
         />
     );
 }
