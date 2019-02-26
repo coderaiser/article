@@ -1,10 +1,10 @@
-# Автоматизируем переход на react-hooks
+# Автоматизируем переход на React Hooks
 
 ## Введение
 
-[React 6.18](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) - первый стабильный релиз с поддержкой [react hooks](https://reactjs.org/docs/hooks-intro.html). Теперь хуки можно использовать не опасаясь, что API изменится кардинальным образом. И хотя команда разработчиков `react` советует использовать новую технологию лишь для новых компонентов, многим, в том числе и мне, хотелось бы их использовать и для старых компонентов использующих классы. Но поскольку ручной рефакторинг - это не очень весело, мы попробуем автоматизировать этот процесс.
-
-## Особенности react-hooks
+[[React 6.18](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) - первый стабильный релиз с поддержкой [react hooks](https://reactjs.org/docs/hooks-intro.html). Теперь хуки можно использовать не опасаясь, что API изменится кардинальным образом. И хотя команда разработчиков `react` советует использовать новую технологию лишь для новых компонентов, многим, в том числе и мне, хотелось бы их использовать и для старых компонентов использующих классы. Но поскольку ручной рефакторинг - это не очень весело, мы попробуем автоматизировать этот процесс.
+<cut/>
+## Особенности React Hooks
 
 В статье [Введение в React Hooks](https://habr.com/en/post/429712/) очень подробно рассказано, что это за хуки, и с чем их едят. В двух словах, это новая безумная технология создания компонентов, имеющих `state`, без использования классов.
 
@@ -17,23 +17,23 @@ export default Button;
 class Button extends Component {
     constructor() {
         super();
-
+        
         this.state = {
             enabled: true
         };
-
+        
         this.toogle = this._toggle.bind(this);
     }
-
+    
     _toggle() {
         this.setState({
             enabled: false,
         });
     }
-
+    
     render() {
         const {enabled} = this.state;
-
+        
         return (
             <button
                 enabled={enabled}
@@ -52,11 +52,11 @@ export default Button;
 
 function Button(props) {
     const [enabled, setEnabled] = useState(true);
-
+    
     function toggle() {
         setEnabled(false);
     }
-
+    
     return (
         <button
             enabled={enabled}
@@ -137,7 +137,7 @@ const [error, data] = await tryToCatch(readFile, path, 'utf8');
 
 На этом лирическое отступление можно закончить и перейти к вопросу преобразования.
 
-## Преобразование класа в react-hooks
+## Преобразование класса в React Hooks
 
 Для преобразования мы будем использовать AST-трансформатор [putout](https://habr.com/en/post/439564/), позволяющий менять только то, что необходимо и плагин [@putout/plugin-react-hooks](https://github.com/coderaiser/putout/tree/master/packages/plugin-react-hooks).
 
@@ -170,7 +170,7 @@ npm i putout @putout/plugin-react-hooks -D
 ```
 
 После чего попробуем `putout` в действии.
-
+<spoiler title="Spoiler header">
 ```sh
 coderaiser@cloudcmd:~/example$ putout button.js
 /home/coderaiser/putout/packages/plugin-react-hooks/button.js
@@ -187,10 +187,10 @@ coderaiser@cloudcmd:~/example$ putout button.js
  26:25  error   should be used "setEnabled" instead of "this.setEnabled"    react-hooks/remove-this
  3:0    error   class Button should be a function                           react-hooks/convert-class-to-function
 
-✖ 12 errors in 1 files
+ 12 errors in 1 files
   fixable with the `--fix` option
 ```
-
+</spoiler>
 `putout` нашел 12 мест которые можно поправить, попробуем:
 
 ```sh
@@ -205,15 +205,15 @@ export default Button;
 
 function Button(props) {
     const [enabled, setEnabled] = useState(true);
-
+    
     function toggle() {
         setEnabled(false);
     }
-
+    
     return (
         <button
             enabled={enabled}
-            onClick={toggle}
+            onClick={setEnabled}
         />
     );
 }
@@ -271,7 +271,7 @@ module.exports.find = (ast, {push}) => {
 ```
 
 В описанном выше коде используется функция-утилита `traverseClass` для нахождения класса, она не так важна для общего понимания, но все же ее имеет смысл привести, для большей точности:
-
+<spoiler title="Spoiler header">
 ```javascript
 // Обходим классы один за другим
 function traverseClass(ast, visitor) {
@@ -301,7 +301,7 @@ function isExtendComponent(superClass) {
     return false;
 }
 ```
-
+</spoiler>
 Тест, в свою очередь, может выглядеть таким образом:
 
 ```javascript
@@ -336,7 +336,6 @@ test('plugin-react-hooks: remove-this: transform', (t) => {
     t.end();
 });
 ```
-
 ### В импортах использовать `useState` вместо `Component`
 
 Рассмотрим реализацию правила [convert-import-component-to-use-state](https://github.com/coderaiser/putout/tree/v4.3.2/packages/plugin-react-hooks/lib/convert-import-component-to-use-state).
@@ -410,7 +409,7 @@ module.exports.find = (ast, {push, traverse}) => {
             const name = 'Component';
             const specifiersPaths = path.get('specifiers');
             for (const specPath of specifiersPaths) {
-                // если это не ImportSpecifier - выходим из итерации
+                // если это не ImportSpecifier - выходим из итерации 
                 if (!specPath.isImportSpecifier())
                     continue;
                 
@@ -444,6 +443,7 @@ test('plugin-react-hooks: convert-import-component-to-use-state: transform', (t)
 ```
 
 И так, мы рассмотрели в общих чертах программную реализацию нескольких правил, остальные строятся по аналогичной схеме. Ознакомится со всеми узлами дерева разбираемого файла `button.js` можно в [astexplorer](https://astexplorer.net/#/gist/17647230ee78470cf09e01427f0b4d89/cf6894ed63f06a66abf26d37df41448e85feaadb). Исходный код описанных плагинов можно найти [в репозитории](https://github.com/coderaiser/putout/tree/master/packages/plugin-react-hooks).
+
 
 ## Заключение
 
