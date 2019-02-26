@@ -127,7 +127,7 @@ const error = result[0];
 const data = result[1];
 ```
 
-Это все еще допустимый код, но он значительно теряет по сравнению с деструктуризацией. Хочу еще добавить пример работы библиотеки [try-to-catch](https://github.com/coderaiser/try-to-catch) с приходом `async-await` конструкция `try-catch` все еще актуальна, и может быть записана таким образом:
+Это все еще допустимый код, но он значительно теряет по сравнению с деструктуризацией. Хочу еще добавить пример работы библиотеки [try-to-catch](https://github.com/coderaiser/try-to-catch), с приходом `async-await` конструкция `try-catch` все еще актуальна, и может быть записана таким образом:
 
 ```javascript
 const [error, data] = await tryToCatch(readFile, path, 'utf8');
