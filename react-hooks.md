@@ -410,11 +410,11 @@ module.exports.find = (ast, {push, traverse}) => {
             const name = 'Component';
             const specifiersPaths = path.get('specifiers');
             for (const specPath of specifiersPaths) {
-                // если это не ImportSpecifier - идем дальше 
+                // если это не ImportSpecifier - выходим из итерации
                 if (!specPath.isImportSpecifier())
                     continue;
                 
-                // если это не Compnent - идем дальше
+                // если это не Compnent - выходим из итерации
                 if (!specPath.get('imported').isIdentifier({name}))
                     continue;
 
