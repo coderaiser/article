@@ -56,7 +56,7 @@
 
 **Интеграция с существующими решениями**
 
-Putout [поддерживает](https://github.com/coderaiser/putout/tree/v8.11.0/packages/engine-parser#parsecode) все самые популярные парсеры JavaScript кода, а так же системы написания кодмодов, такие как [jscodeshift](https://github.com/facebook/jscodeshift). Кроме этого может использоваться как [плагин для ESLint](https://github.com/coderaiser/putout/tree/master/packages/eslint-plugin-putout) (благодаря чему попадает во все IDE), плагин для babel, а также имеет возможность запуска ESLint для форматирования файла, после внесения изменений, а так же встроенную поддержку работы со staged файлами в git и улучшенную работу кэша (кэшируются результаты проверки всех правил Putout, и [только встроенных правил](https://github.com/eslint/eslint/issues/10712#issuecomment-409748549) eslint).
+Putout [поддерживает](https://github.com/coderaiser/putout/tree/v8.11.0/packages/engine-parser#parsecode) все самые популярные парсеры JavaScript кода, а так же системы написания кодмодов, такие как [jscodeshift](https://github.com/facebook/jscodeshift). Кроме этого может использоваться как [плагин для ESLint](https://github.com/coderaiser/putout/tree/master/packages/eslint-plugin-putout) (благодаря чему попадает во все IDE), плагин для babel, а также имеет возможность запуска ESLint для форматирования файла, после внесения изменений, а так же встроенную поддержку работы со staged файлами в git и улучшенную работу кэша (кэшируются результаты проверки всех правил Putout, и [только встроенных правил](https://github.com/eslint/eslint/issues/10712#issuecomment-409748549) ESLint).
 
 **Послесловие**
 
