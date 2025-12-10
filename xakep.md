@@ -1,6 +1,6 @@
 Облачный файловый менеджер Cloud Commander
 -----------------
-Mnemonic Enemy aka Coderaiser (coderaiser@cloudcmd.io)
+Mnemonic Enemy aka Coderaiser (coderaiser [at] cloudcmd.io)
 
 ![Logo](http://cloudcmd.io/img/logo/cloudcmd.png)
 
